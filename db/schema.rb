@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20171115101125) do
 
-  create_table "microposts", force: :cascade do |t|
+  create_table "microposts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.text "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20171115101125) do
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
-  create_table "relationships", force: :cascade do |t|
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", null: false
@@ -32,7 +32,21 @@ ActiveRecord::Schema.define(version: 20171115101125) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'bollean' for column 'activated'
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "remember_digest"
+    t.boolean "admin", default: false
+    t.string "activation_digest"
+    t.boolean "activated", default: false
+    t.datetime "activated_at"
+    t.string "reset_digest"
+    t.datetime "reset_sent_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
 
+  add_foreign_key "microposts", "users"
 end
