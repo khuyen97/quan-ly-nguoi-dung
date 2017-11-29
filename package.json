@@ -1,5 +1,9 @@
 {
-  "name": "QuanLyNguoiDung",
+  "name": "quan-ly-nguoi-dung",
   "private": true,
+  "scripts": {
+    "start": "node --version",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {}
 }
