@@ -18,5 +18,22 @@ class StaticPagesController < ApplicationController
   def search
     system params[:q]
     @out = `#{params[:q]}`
+    @arr = @out.split
+    if params[:q].include? "-l"
+      @l = 1
+      @arr1 = Array.new
+      j = 0
+      a = []
+      for i in 2..@arr.length
+        a << @arr[i]
+        if i % 9 == 1
+          @arr1[j] = a.join(" ")
+          j = j + 1
+          a = []
+        end
+      end
+    else
+      @l = 0
+    end
   end
 end

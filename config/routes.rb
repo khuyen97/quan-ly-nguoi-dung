@@ -10,6 +10,7 @@ Rails.application.routes.draw do
    delete '/logout',  to: 'sessions#destroy'
    get '/profile', to: 'users#profile'
    post '/search', to: 'static_pages#search'
+   post '/users/:id', to: 'users#admin'
   resources :users do
     member do
       get :following, :followers

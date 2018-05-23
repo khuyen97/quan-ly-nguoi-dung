@@ -1,1 +1,20 @@
-<h1><%= @out %></h1>
+<% provide(:title, "Search") %>
+<% if @l == 1 %>
+<%= @arr[0] %>
+<%= @arr[1] %>
+<div class="row">
+        <% for i in 0..@arr1.length %>
+    <div class="col-md-12"> 
+        <%= @arr1[i] %>
+    </div>
+    <% end %>
+</div>
+<% else %>
+<div class="row">
+    <% for i in 0..@arr.length %>
+<div class="col-md-2"> 
+    <%= @arr[i] %>
+</div>
+<% end %>
+</div>
+<% end %>
